@@ -404,7 +404,8 @@
     },
     {
       "lean": "theorem le_total (a b : mynat) : a ≤ b ∨ b ≤ a :=\n",
-      "editorText": "induction b with d hd,\r\nright,\r\nexact zero_le a,\r\ncases hd,\r\n\r\nleft,\r\nexact le_succ a d hd,\r\n\r\ninduction a with p hi,\r\nleft,\r\nexact zero_le _,\r\n\r\nright,\r\ncases hd with a ha,\r\nrw le_iff_exists_add,\r\nrw ha,\r\nuse a,"
+      "isSolved": true,
+      "editorText": "revert a,\r\n\r\ninduction b with b' hi,\r\nintro a,\r\nright,\r\nexact zero_le a,\r\n\r\nhave hb := hi (succ b'),\r\ncases hb,\r\n\r\nintro a,\r\nhave ha := hi a,\r\ncases ha,\r\nhave hab := le_succ a b' ha,\r\nleft,\r\nexact hab,\r\n\r\nhave hsba := le_trans (succ b') b' a hb ha,\r\nright,\r\nexact hsba,\r\n\r\nintro a,\r\nhave ha := hi a,\r\ncases ha,\r\n\r\nhave hba := le_succ a b' ha,\r\nleft,\r\nexact hba,\r\n\r\ncases ha with a' ha',\r\ninduction a' with a'' hia,\r\nrw add_zero at ha',\r\nleft,\r\nrw le_iff_exists_add,\r\nuse 1,\r\nrw add_one_eq_succ,\r\nrw ha',\r\nrefl,\r\n\r\nright,\r\nrw le_iff_exists_add,\r\nuse a'',\r\nrw add_succ at ha',\r\nrw succ_add,\r\nexact ha',"
     },
     {
       "lean": "lemma le_succ_self (a : mynat) : a ≤ succ a :=\n",
